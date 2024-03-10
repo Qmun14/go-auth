@@ -1,6 +1,10 @@
 package database
 
 import (
+	"fmt"
+	"log"
+
+	"github.com/Qmun14/jwtAuth/utils"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -8,7 +12,13 @@ import (
 var DB *gorm.DB
 
 func Connect() {
-	dsn := "host=localhost user=root password=secret dbname=auth_jwt port=5431 sslmode=disable TimeZone=Asia/Jakarta"
+	config, err := utils.LoadConfig("..")
+	if err != nil {
+		log.Fatalf("error %s", err)
+		return
+	}
+
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Jakarta", config.DBHost, config.DBUser, config.DBPass, config.DBName, config.DBPort)
 	conn, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
