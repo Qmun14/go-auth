@@ -18,7 +18,9 @@ func main() {
 
 	database.Connect()
 
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		AppName: "User Management API v.0.0.1-beta",
+	})
 
 	app.Use(cors.New(cors.Config{
 		AllowOrigins:     config.ClientAddress,

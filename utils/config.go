@@ -7,6 +7,7 @@ import "github.com/spf13/viper"
 type Config struct {
 	ServerAddress       string `mapstructure:"SERVER_ADDRESS"`
 	ClientAddress       string `mapstructure:"CLIENT_ADDRESS"`
+	SecretCode          string `mapstructure:"SECRET_CODE"`
 	EmailSenderName     string `mapstructure:"EMAIL_SENDER_NAME"`
 	EmailSenderAddress  string `mapstructure:"EMAIL_SENDER_ADDRESS"`
 	EmailSenderPassword string `mapstructure:"EMAIL_SENDER_PASSWORD"`
